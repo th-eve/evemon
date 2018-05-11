@@ -68,8 +68,10 @@ namespace EVEMon.Common.Models.Collections
                     var limit = contract.DateExpired.AddDays(Contract.MaxEndedDays);
                     if ((limit >= now || status == CCPContractStatus.Outstanding.ToString()) &&
                             !Items.Any(x => x.TryImport(contract, endedContracts)))
+                    {
                         // Exclude contracts which matched an existing contract
                         newContracts.Add(new Contract(m_character, contract));
+                    }
                 }
             }
             // Add the new contracts that need attention to be notified to the user

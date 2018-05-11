@@ -24,29 +24,31 @@ namespace EVEMon.Common.Serialization.Esi
 
             // Split up the recipients by type
             if (Recipients != null)
+            {
                 foreach (var recipient in Recipients)
                 {
                     long id = recipient.RecipientID;
                     switch (recipient.RecipientType)
                     {
-                    case "corporation":
-                    case "alliance":
-                        // Alliance
-                        ret.ToCorpOrAllianceID = id;
-                        break;
-                    case "mailing_list":
-                        // List
-                        ret.ToListID.Add(id);
-                        break;
-                    case "character":
-                        // Character
-                        ret.ToCharacterIDs.Add(id);
-                        break;
-                    default:
-                        // Ignore
-                        break;
+                        case "corporation":
+                        case "alliance":
+                            // Alliance
+                            ret.ToCorpOrAllianceID = id;
+                            break;
+                        case "mailing_list":
+                            // List
+                            ret.ToListID.Add(id);
+                            break;
+                        case "character":
+                            // Character
+                            ret.ToCharacterIDs.Add(id);
+                            break;
+                        default:
+                            // Ignore
+                            break;
                     }
                 }
+            }
 
             return ret;
         }

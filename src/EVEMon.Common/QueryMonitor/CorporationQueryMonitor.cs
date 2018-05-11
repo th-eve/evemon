@@ -32,7 +32,9 @@ namespace EVEMon.Common.QueryMonitor
                         // determine whether the key had the roles until we try
                         if ((result.ErrorCode != 403 || rolesError <= 0) && character.
                                 ShouldNotifyError(result, method))
+                        {
                             onFailure.Invoke(character, result);
+                        }
                     }
                     else
                         onSuccess.Invoke(result.Result);

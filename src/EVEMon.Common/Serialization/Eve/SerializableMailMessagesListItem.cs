@@ -58,8 +58,10 @@ namespace EVEMon.Common.Serialization.Eve
                     // Parse one by one into IDs
                     long id;
                     foreach (string idStr in value.Split(','))
+                    {
                         if (long.TryParse(idStr, out id))
                             m_toCharacterIDs.Add(id);
+                    }
                 }
             }
         }
@@ -73,8 +75,10 @@ namespace EVEMon.Common.Serialization.Eve
                 // Parse one by one into IDs
                 long id;
                 foreach (string idStr in value.Split(','))
+                {
                     if (long.TryParse(idStr, out id))
                         m_toListID.Add(id);
+                }
             }
         }
 

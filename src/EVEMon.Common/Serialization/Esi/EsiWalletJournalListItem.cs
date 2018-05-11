@@ -102,75 +102,77 @@ namespace EVEMon.Common.Serialization.Esi
             var extraData = Extra;
 
             if (extraData != null)
+            {
                 // Populate arguments from the extra data based on the ref type
                 // See http://eveonline-third-party-documentation.readthedocs.io/en/latest/xmlapi/constants.html#reference-type
                 switch (refType)
                 {
-                case EsiRefTypeString.player_trading:
-                    argId1 = extraData.LocationID;
-                    break;
-                case EsiRefTypeString.market_transaction:
-                    argName1 = extraData.TransactionID.ToString(CultureInfo.InvariantCulture);
-                    break;
-                case EsiRefTypeString.office_rental_fee:
-                case EsiRefTypeString.brokers_fee:
-                case EsiRefTypeString.jump_clone_installation_fee:
-                case EsiRefTypeString.jump_clone_activation_fee:
-                case EsiRefTypeString.reprocessing_tax:
-                    argName1 = "EVE System";
-                    argId1 = 1L;
-                    break;
-                case EsiRefTypeString.bounty_prize:
-                    argName1 = extraData.NpcName;
-                    argId1 = extraData.NpcID;
-                    break;
-                case EsiRefTypeString.insurance:
-                    argName1 = extraData.DestroyedShipTypeID.ToString(CultureInfo.InvariantCulture);
-                    break;
-                case EsiRefTypeString.agent_mission_reward:
-                case EsiRefTypeString.agent_mission_time_bonus_reward:
-                case EsiRefTypeString.cspa:
-                case EsiRefTypeString.corporation_account_withdrawal:
-                case EsiRefTypeString.medal_creation:
-                case EsiRefTypeString.medal_issued:
-                    argId1 = extraData.CharacterID;
-                    break;
-                case EsiRefTypeString.corporation_logo_change_cost:
-                    argId1 = extraData.CorporationID;
-                    break;
-                case EsiRefTypeString.alliance_maintainance_fee:
-                    argId1 = extraData.AllianceID;
-                    break;
-                case EsiRefTypeString.manufacturing:
-                    argName1 = extraData.JobID.ToString(CultureInfo.InvariantCulture);
-                    break;
-                case EsiRefTypeString.contract_auction_bid:
-                case EsiRefTypeString.contract_auction_bid_refund:
-                case EsiRefTypeString.contract_price:
-                case EsiRefTypeString.contract_brokers_fee:
-                case EsiRefTypeString.contract_sales_tax:
-                case EsiRefTypeString.contract_deposit:
-                case EsiRefTypeString.contract_price_payment_corp:
-                case EsiRefTypeString.contract_brokers_fee_corp:
-                case EsiRefTypeString.contract_deposit_corp:
-                case EsiRefTypeString.contract_deposit_refund:
-                    argName1 = extraData.ContractID.ToString(CultureInfo.InvariantCulture);
-                    break;
-                case EsiRefTypeString.bounty_prizes:
-                    argId1 = extraData.SystemID;
-                    break;
-                case EsiRefTypeString.planetary_import_tax:
-                case EsiRefTypeString.planetary_export_tax:
-                    argId1 = extraData.PlanetID;
-                    // Planet name available from geography? But no planets in the geo file
-                    break;
-                case EsiRefTypeString.industry_job_tax:
-                    argId1 = extraData.LocationID;
-                    break;
-                default:
-                    // Empty
-                    break;
+                    case EsiRefTypeString.player_trading:
+                        argId1 = extraData.LocationID;
+                        break;
+                    case EsiRefTypeString.market_transaction:
+                        argName1 = extraData.TransactionID.ToString(CultureInfo.InvariantCulture);
+                        break;
+                    case EsiRefTypeString.office_rental_fee:
+                    case EsiRefTypeString.brokers_fee:
+                    case EsiRefTypeString.jump_clone_installation_fee:
+                    case EsiRefTypeString.jump_clone_activation_fee:
+                    case EsiRefTypeString.reprocessing_tax:
+                        argName1 = "EVE System";
+                        argId1 = 1L;
+                        break;
+                    case EsiRefTypeString.bounty_prize:
+                        argName1 = extraData.NpcName;
+                        argId1 = extraData.NpcID;
+                        break;
+                    case EsiRefTypeString.insurance:
+                        argName1 = extraData.DestroyedShipTypeID.ToString(CultureInfo.InvariantCulture);
+                        break;
+                    case EsiRefTypeString.agent_mission_reward:
+                    case EsiRefTypeString.agent_mission_time_bonus_reward:
+                    case EsiRefTypeString.cspa:
+                    case EsiRefTypeString.corporation_account_withdrawal:
+                    case EsiRefTypeString.medal_creation:
+                    case EsiRefTypeString.medal_issued:
+                        argId1 = extraData.CharacterID;
+                        break;
+                    case EsiRefTypeString.corporation_logo_change_cost:
+                        argId1 = extraData.CorporationID;
+                        break;
+                    case EsiRefTypeString.alliance_maintainance_fee:
+                        argId1 = extraData.AllianceID;
+                        break;
+                    case EsiRefTypeString.manufacturing:
+                        argName1 = extraData.JobID.ToString(CultureInfo.InvariantCulture);
+                        break;
+                    case EsiRefTypeString.contract_auction_bid:
+                    case EsiRefTypeString.contract_auction_bid_refund:
+                    case EsiRefTypeString.contract_price:
+                    case EsiRefTypeString.contract_brokers_fee:
+                    case EsiRefTypeString.contract_sales_tax:
+                    case EsiRefTypeString.contract_deposit:
+                    case EsiRefTypeString.contract_price_payment_corp:
+                    case EsiRefTypeString.contract_brokers_fee_corp:
+                    case EsiRefTypeString.contract_deposit_corp:
+                    case EsiRefTypeString.contract_deposit_refund:
+                        argName1 = extraData.ContractID.ToString(CultureInfo.InvariantCulture);
+                        break;
+                    case EsiRefTypeString.bounty_prizes:
+                        argId1 = extraData.SystemID;
+                        break;
+                    case EsiRefTypeString.planetary_import_tax:
+                    case EsiRefTypeString.planetary_export_tax:
+                        argId1 = extraData.PlanetID;
+                        // Planet name available from geography? But no planets in the geo file
+                        break;
+                    case EsiRefTypeString.industry_job_tax:
+                        argId1 = extraData.LocationID;
+                        break;
+                    default:
+                        // Empty
+                        break;
                 }
+            }
 
             return new SerializableWalletJournalListItem()
             {

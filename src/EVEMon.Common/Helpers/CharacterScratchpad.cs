@@ -215,7 +215,9 @@ namespace EVEMon.Common.Helpers
             {
                 if (entry.Remapping != null && entry.Remapping.Status == RemappingPointStatus.UpToDate &&
                     applyRemappingPoints)
+                {
                     Remap(entry.Remapping);
+                }
 
                 Train(entry.Skill, entry.Level);
             }

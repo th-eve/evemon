@@ -161,7 +161,9 @@ namespace EVEMon.Common.Helpers
         {
             if (!settings.EntryTrainingTimes && !settings.EntryStartDate && !settings.EntryFinishDate &&
                 (!settings.EntryCost || !shoppingListCandidate))
+            {
                 return;
+            }
 
             const DescriptiveTextOptions TimeFormat = DescriptiveTextOptions.FullText
                                                       | DescriptiveTextOptions.IncludeCommas

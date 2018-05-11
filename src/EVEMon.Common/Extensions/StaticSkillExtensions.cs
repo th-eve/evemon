@@ -58,8 +58,10 @@ namespace EVEMon.Common.Extensions
                     neededLevel = Math.Max(prereq.Level, neededLevel);
 
                 if (recurse && neededLevel < 5 && prereq.Skill.ID != thisID)
+                {
                     // check for neededLevel fixes recursive skill bug (e.g polaris )
                     prereq.Skill.HasAsPrerequisite(skill, ref neededLevel, true);
+                }
             }
             return neededLevel > 0;
         }

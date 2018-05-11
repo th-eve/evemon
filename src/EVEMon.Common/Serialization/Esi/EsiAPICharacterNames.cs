@@ -11,11 +11,14 @@ namespace EVEMon.Common.Serialization.Esi
         {
             var ret = new SerializableAPICharacterName();
             foreach (var namePair in this)
+            {
                 ret.Entities.Add(new SerializableCharacterNameListItem()
                 {
                     Name = namePair.Name,
                     ID = namePair.ID
                 });
+            }
+
             return ret;
         }
     }

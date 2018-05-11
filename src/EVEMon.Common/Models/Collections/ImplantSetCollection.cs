@@ -126,11 +126,14 @@ namespace EVEMon.Common.Models.Collections
                 // Jump clone implants
                 var jcImplants = new LinkedList<SerializableNewImplant>();
                 foreach (int implant in clone.Implants)
+                {
                     jcImplants.AddLast(new SerializableNewImplant()
                     {
                         ID = implant,
                         Name = StaticItems.GetItemName(implant)
                     });
+                }
+
                 set.Import(jcImplants);
 
                 m_cloneSets.Add(set);

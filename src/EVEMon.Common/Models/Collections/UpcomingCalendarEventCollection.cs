@@ -68,8 +68,11 @@ namespace EVEMon.Common.Models.Collections
             {
                 if (target.ShouldNotifyError(result, ESIAPICharacterMethods.
                         UpcomingCalendarEventDetails))
+                {
                     EveMonClient.Notifications.NotifyCharacterUpcomingCalendarEventDetailsError(
-                        m_character, result);
+                       m_character, result);
+                }
+
                 if (!result.HasError)
                     Items.Add(new UpcomingCalendarEvent(target, result.Result));
             }

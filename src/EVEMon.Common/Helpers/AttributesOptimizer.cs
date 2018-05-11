@@ -84,7 +84,9 @@ namespace EVEMon.Common.Helpers
                             // or did it train the same number of skills in a lesser time ?
                             if (tempSkillCount <= bestSkillCount &&
                                 (tempSkillCount != bestSkillCount || tempScratchpad.TrainingTime >= bestTime))
+                            {
                                 continue;
+                            }
 
                             bestScratchpad.Reset();
                             bestScratchpad.Memory.Base = tempScratchpad.Memory.Base;

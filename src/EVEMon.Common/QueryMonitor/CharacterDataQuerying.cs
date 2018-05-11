@@ -192,21 +192,23 @@ namespace EVEMon.Common.QueryMonitor
 
             // Network available, has access
             if (NetworkMonitor.IsNetworkAvailable && apiKey != null)
+            {
                 EveMonClient.APIProviders.CurrentProvider.QueryEsiAsync<T>(targetMethod,
-                    apiKey.AccessToken, m_ccpCharacter.CharacterID, (result, ignore) =>
-                    {
-                        var target = m_ccpCharacter;
+                   apiKey.AccessToken, m_ccpCharacter.CharacterID, (result, ignore) =>
+                   {
+                       var target = m_ccpCharacter;
 
                         // Character may have been deleted or set to not be monitored
                         if (target != null && target.Monitored)
-                        {
+                       {
                             // Notify if an error occured
                             if (target.ShouldNotifyError(result, targetMethod))
-                                onError.Invoke(target, result);
-                            if (!result.HasError)
-                                onSuccess.Invoke(result.Result);
-                        }
-                    });
+                               onError.Invoke(target, result);
+                           if (!result.HasError)
+                               onSuccess.Invoke(result.Result);
+                       }
+                   });
+            }
         }
         
         /// <summary>
@@ -418,11 +420,13 @@ namespace EVEMon.Common.QueryMonitor
             var target = m_ccpCharacter;
             // Character may have been deleted since we queried
             if (target != null)
+            {
                 TaskHelper.RunCPUBoundTaskAsync(() => target.Assets.Import(result.ToXMLItem().
-                    Assets)).ContinueWith(_ =>
-                    {
-                        EveMonClient.OnCharacterAssetsUpdated(target);
-                    }, EveMonClient.CurrentSynchronizationContext);
+                   Assets)).ContinueWith(_ =>
+                   {
+                       EveMonClient.OnCharacterAssetsUpdated(target);
+                   }, EveMonClient.CurrentSynchronizationContext);
+            }
         }
 
         /// <summary>

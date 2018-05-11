@@ -58,7 +58,9 @@ namespace EVEMon.Common.Controls
             Size preferredSize = base.GetPreferredSize(proposedSize);
             if (m_showSplit && !string.IsNullOrEmpty(Text) &&
                 TextRenderer.MeasureText(Text, Font).Width + PushButtonWidth > preferredSize.Width)
+            {
                 return preferredSize + new Size(PushButtonWidth + s_borderSize * 2, 0);
+            }
 
             return preferredSize;
         }

@@ -254,6 +254,7 @@ namespace EVEMon.Common.Service
                 }
                 // Try filling with a current character identity or corporation/alliance
                 if (string.IsNullOrEmpty(name))
+                {
                     foreach (var character in EveMonClient.Characters)
                     {
                         string corpName = character.CorporationName, allianceName = character.
@@ -274,6 +275,8 @@ namespace EVEMon.Common.Service
                             break;
                         }
                     }
+                }
+
                 return name;
             }
 

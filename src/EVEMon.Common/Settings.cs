@@ -275,7 +275,9 @@ namespace EVEMon.Common
             // Add missing ESI methods update periods
             foreach (Enum method in ESIMethods.Methods.Where(method => method.GetUpdatePeriod() != null)
                 .Where(method => !Updates.Periods.ContainsKey(method.ToString())))
+            {
                 Updates.Periods.Add(method.ToString(), method.GetUpdatePeriod().DefaultPeriod);
+            }
 
             // Initialize or add missing columns
             InitializeOrAddMissingColumns();

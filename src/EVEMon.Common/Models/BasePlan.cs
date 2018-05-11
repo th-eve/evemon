@@ -788,6 +788,7 @@ namespace EVEMon.Common.Models
         /// <summary>
         /// Removes completed skills
         /// </summary>
+        /// <param name="policy"></param>
         public void CleanObsoleteEntries(ObsoleteRemovalPolicy policy)
         {
             using (SuspendingEvents())
@@ -801,7 +802,9 @@ namespace EVEMon.Common.Models
                     // Confirmed by API?
                     if (policy == ObsoleteRemovalPolicy.ConfirmedOnly &&
                         pe.CharacterSkill.LastConfirmedLvl < pe.Level)
+                    {
                         continue;
+                    }
 
                     Items.RemoveAt(i);
                     m_lookup[pe.Skill.ArrayIndex * 5 + pe.Level - 1] = null;
@@ -976,7 +979,9 @@ namespace EVEMon.Common.Models
                 // Apply the remapping
                 if (applyRemappingPoints && entry.Remapping != null &&
                     entry.Remapping.Status == RemappingPointStatus.UpToDate)
+                {
                     scratchpad.Remap(entry.Remapping);
+                }
 
                 // Update entry's statistics
                 entry.UpdateOldTrainingTime(scratchpad);

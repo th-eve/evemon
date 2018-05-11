@@ -39,8 +39,10 @@ namespace EVEMon.Common.Serialization.Esi
 
             // Nested items
             if (Items != null)
+            {
                 foreach (var item in Items)
                     ret.Items.Add(item.ToXMLItem());
+            }
 
             return ret;
         }

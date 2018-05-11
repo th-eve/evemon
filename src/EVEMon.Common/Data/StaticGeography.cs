@@ -63,8 +63,10 @@ namespace EVEMon.Common.Data
                         baseCorp = GetCorporationByID(corpID);
                     if (int.TryParse(entries[0], out id) && !string.IsNullOrEmpty(factionName)
                             && id > 0 && baseCorp != null)
+                    {
                         s_factionsByID.Add(id, new Faction(id, baseCorp, militiaCorp,
-                            factionName));
+                           factionName));
+                    }
                 }
             }
         }

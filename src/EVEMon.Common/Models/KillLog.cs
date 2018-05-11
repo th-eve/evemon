@@ -173,6 +173,7 @@ namespace EVEMon.Common.Models
                 Victim.Name = EveIDToName.GetIDToName(Victim.ID);
             }
             if (Attackers != null)
+            {
                 foreach (var attacker in Attackers)
                 {
                     // Update attacker's info
@@ -181,6 +182,7 @@ namespace EVEMon.Common.Models
                     attacker.FactionName = EveIDToName.GetIDToName(attacker.FactionID);
                     attacker.Name = EveIDToName.GetIDToName(attacker.ID);
                 }
+            }
         }
 
         /// <summary>

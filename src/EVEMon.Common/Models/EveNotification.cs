@@ -118,7 +118,9 @@ namespace EVEMon.Common.Models
                     // If the title was not properly parsed, leave it blank
                     if (m_title.Contains("{") || m_title == EVENotificationText.
                             NotificationText)
+                    {
                         m_title = EveMonConstants.UnknownText;
+                    }
                 }
                 return m_title;
             }

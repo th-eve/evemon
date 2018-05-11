@@ -493,8 +493,10 @@ namespace EVEMon.Common.Models
                     owner = Character.CharacterID;
                 }
                 if (key != null)
+                {
                     EveMonClient.APIProviders.CurrentProvider.QueryEsiAsync(method,
-                        key.AccessToken, owner, ID, callback, method);
+                       key.AccessToken, owner, ID, callback, method);
+                }
             }
         }
 

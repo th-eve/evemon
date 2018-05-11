@@ -258,8 +258,10 @@ namespace EVEMon.Common.Models
         private PlanetaryPinState GetState()
         {
             if (DBConstants.EcuTypeIDs.Contains(TypeID))
+            {
                 return ExpiryTime > DateTime.UtcNow ? PlanetaryPinState.Extracting :
-                    PlanetaryPinState.Idle;
+                   PlanetaryPinState.Idle;
+            }
 
             return PlanetaryPinState.None;
         }

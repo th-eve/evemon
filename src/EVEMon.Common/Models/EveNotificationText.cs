@@ -112,7 +112,9 @@ namespace EVEMon.Common.Models
 
             if (parsedDict.ContainsKey("senderName") && string.IsNullOrWhiteSpace(
                     parsedDict["senderName"]))
+            {
                 parsedDict["senderName"] = m_notification.SenderName;
+            }
 
             return parsedDict;
         }

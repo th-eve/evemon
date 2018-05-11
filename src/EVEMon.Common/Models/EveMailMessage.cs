@@ -189,9 +189,11 @@ namespace EVEMon.Common.Models
                 ESIKey apiKey = m_ccpCharacter.Identity.FindAPIKeyWithAccess(
                     ESIAPICharacterMethods.MailBodies);
                 if (apiKey != null)
+                {
                     EveMonClient.APIProviders.CurrentProvider.QueryEsiAsync<EsiAPIMailBody>(
-                        ESIAPICharacterMethods.MailBodies, apiKey.AccessToken, m_ccpCharacter.
-                        CharacterID, MessageID, OnEVEMailBodyDownloaded, MessageID);
+                       ESIAPICharacterMethods.MailBodies, apiKey.AccessToken, m_ccpCharacter.
+                       CharacterID, MessageID, OnEVEMailBodyDownloaded, MessageID);
+                }
             }
         }
 

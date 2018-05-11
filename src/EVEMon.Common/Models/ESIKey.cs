@@ -419,8 +419,10 @@ namespace EVEMon.Common.Models
             // Add the ESI key to the identity
             cid.ESIKeys.Add(this);
             if (cid.CCPCharacter != null)
+            {
                 // Notify subscribers
                 EveMonClient.OnCharacterUpdated(cid.CCPCharacter);
+            }
 
             // Fires the event regarding the character list update
             EveMonClient.OnCharacterListUpdated(this);

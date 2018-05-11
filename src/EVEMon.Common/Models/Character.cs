@@ -706,7 +706,9 @@ namespace EVEMon.Common.Models
             decimal balance;
             if (decimal.TryParse(result, NumberStyles.AllowDecimalPoint, CultureInfo.
                     InvariantCulture, out balance))
+            {
                 Balance = balance;
+            }
         }
 
         /// <summary>
@@ -799,11 +801,14 @@ namespace EVEMon.Common.Models
             // Implants
             var newImplants = new LinkedList<SerializableNewImplant>();
             foreach (int implant in implants)
+            {
                 newImplants.AddLast(new SerializableNewImplant()
                 {
                     ID = implant,
                     Name = StaticItems.GetItemName(implant)
                 });
+            }
+
             CurrentImplants.Import(newImplants);
         }
 

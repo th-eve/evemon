@@ -54,9 +54,11 @@ namespace EVEMon.Common.Service
 
             SerializableEveFlagsListItem flag = null;
             if (s_eveFlags != null)
+            {
                 flag = s_eveFlags.Values.FirstOrDefault(x => x.Name.Equals(name,
-                    StringComparison.InvariantCultureIgnoreCase));
-            
+                   StringComparison.InvariantCultureIgnoreCase));
+            }
+
             return flag?.ID ?? 0;
         }
 

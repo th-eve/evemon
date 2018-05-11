@@ -55,18 +55,22 @@ namespace EVEMon.Common.Service {
             bool needsUpdate = false;
 
             if (bypass || (value = Prefetch(id)) == default(T))
+            {
                 // Thread safety
                 lock (m_cache)
                 {
                     m_cache.TryGetValue(id, out value);
                     needsUpdate = !m_requested.Contains(id);
                 }
+            }
 
             if (needsUpdate && QueueID(id))
+            {
                 // No query running and a new one needs to be started; note that new
                 // queries will be started even for IDs in the cache if they need to
                 // be updated
                 FetchIDs();
+            }
 
             return value;
         }

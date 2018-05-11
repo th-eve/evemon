@@ -1096,12 +1096,14 @@ namespace EVEMon.Common
                 {
                     var esiError = serializer.ReadObject(stream) as EsiAPIError;
                     if (esiError != null)
+                    {
                         // Create a serializable error for an API exception
                         throw new APIException(new SerializableAPIError()
                         {
                             ErrorMessage = esiError.Error,
                             ErrorCode = responseCode.ToString(CultureInfo.InvariantCulture)
                         });
+                    }
                 }
                 catch (InvalidOperationException e)
                 {

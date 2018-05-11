@@ -192,8 +192,10 @@ namespace EVEMon.Common.Service
                     }
                 }
                 if (id != 0L)
+                {
                     EveMonClient.APIProviders.CurrentProvider.QueryEsiAsync<EsiAPIStation>(
-                        ESIAPIGenericMethods.StationInfo, id, OnQueryStationUpdated, id);
+                       ESIAPIGenericMethods.StationInfo, id, OnQueryStationUpdated, id);
+                }
             }
 
             private void OnQueryStationUpdated(EsiResult<EsiAPIStation> result, object ignore)

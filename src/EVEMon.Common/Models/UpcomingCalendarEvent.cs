@@ -115,9 +115,11 @@ namespace EVEMon.Common.Models
                 ESIKey apiKey = m_ccpCharacter.Identity.FindAPIKeyWithAccess(
                     ESIAPICharacterMethods.CalendarEventAttendees);
                 if (apiKey != null)
+                {
                     EveMonClient.APIProviders.CurrentProvider.QueryEsiAsync<EsiAPICalendarEventAttendees>(
-                        ESIAPICharacterMethods.CalendarEventAttendees, apiKey.AccessToken,
-                        m_ccpCharacter.CharacterID, m_eventID, OnCalendarEventAttendeesDownloaded);
+                       ESIAPICharacterMethods.CalendarEventAttendees, apiKey.AccessToken,
+                       m_ccpCharacter.CharacterID, m_eventID, OnCalendarEventAttendeesDownloaded);
+                }
             }
         }
 
@@ -131,8 +133,11 @@ namespace EVEMon.Common.Models
 
             // Notify if an error occured
             if (m_ccpCharacter.ShouldNotifyError(result, ESIAPICharacterMethods.CalendarEventAttendees))
+            {
                 EveMonClient.Notifications.NotifyCharacterCalendarEventAttendeesError(
-                    m_ccpCharacter, result);
+                   m_ccpCharacter, result);
+            }
+
             if (!result.HasError && result.Result.Count > 0)
             {
                 var attendees = result.Result.ToXMLItem().EventAttendees.Select(attendee =>

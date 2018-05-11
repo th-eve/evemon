@@ -93,7 +93,9 @@ namespace EVEMon.Common.QueryMonitor
             {
                 if (EveMonClient.APIProviders.CurrentProvider != APIProvider.DefaultProvider &&
                     EveMonClient.APIProviders.CurrentProvider != APIProvider.TestProvider)
+                {
                     return true;
+                }
 
                 return DateTime.UtcNow > (LastResult?.CachedUntil ?? NextUpdate);
             }

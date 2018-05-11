@@ -70,8 +70,10 @@ namespace EVEMon.Common.Serialization.Esi
 
             // Attackers
             if (Attackers != null)
+            {
                 foreach (var attacker in Attackers)
                     ret.Attackers.Add(attacker.ToXMLItem());
+            }
 
             // Items
             if (Victim != null)

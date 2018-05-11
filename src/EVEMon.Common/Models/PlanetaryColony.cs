@@ -177,9 +177,11 @@ namespace EVEMon.Common.Models
                 ESIKey apiKey = Character.Identity.FindAPIKeyWithAccess(ESIAPICharacterMethods.
                     PlanetaryLayout);
                 if (apiKey != null)
+                {
                     EveMonClient.APIProviders.CurrentProvider.QueryEsiAsync<EsiAPIPlanetaryColony>(
-                        ESIAPICharacterMethods.PlanetaryLayout, apiKey.AccessToken, Character.
-                        CharacterID, PlanetID, OnPlanetaryPinsUpdated);
+                       ESIAPICharacterMethods.PlanetaryLayout, apiKey.AccessToken, Character.
+                       CharacterID, PlanetID, OnPlanetaryPinsUpdated);
+                }
             }
         }
 
