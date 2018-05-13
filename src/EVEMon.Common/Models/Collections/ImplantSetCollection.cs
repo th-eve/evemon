@@ -5,6 +5,8 @@ using EVEMon.Common.Serialization.Eve;
 using EVEMon.Common.Serialization.Settings;
 using EVEMon.Common.Serialization.Esi;
 using EVEMon.Common.Data;
+using EVEMon.Common.Service;
+using System.Globalization;
 
 namespace EVEMon.Common.Models.Collections
 {
@@ -121,8 +123,18 @@ namespace EVEMon.Common.Models.Collections
             foreach (var clone in serial.JumpClones)
             {
                 int cloneID = clone.JumpCloneID;
-                ImplantSet set = new ImplantSet(m_character, clone.Name);
-
+                string name = clone.Name;
+                // Try to pick a sane name if it is null
+                if (string.IsNullOrEmpty(name))
+                {
+                    var location = EveIDToStation.GetIDToStation(clone.LocationID);
+                    if (location == null)
+                        name = "Clone at location #" + clone.LocationID.ToString(CultureInfo.
+                            InvariantCulture);
+                    else
+                        name = "Clone in " + location.Name;
+                }
+                ImplantSet set = new ImplantSet(m_character, name);
                 // Jump clone implants
                 var jcImplants = new LinkedList<SerializableNewImplant>();
                 foreach (int implant in clone.Implants)
@@ -132,7 +144,6 @@ namespace EVEMon.Common.Models.Collections
                         Name = StaticItems.GetItemName(implant)
                     });
                 set.Import(jcImplants);
-
                 m_cloneSets.Add(set);
             }
 
@@ -186,13 +197,12 @@ namespace EVEMon.Common.Models.Collections
             m_cloneSets.Clear();
             foreach (SerializableCharacterJumpClone jumpClone in serial.JumpClones)
             {
-                List<SerializableNewImplant> cloneImplants =
-                    serial.JumpCloneImplants.Where(x => x.JumpCloneID == jumpClone.JumpCloneID)
-                        .Select(cloneImplant => new SerializableNewImplant
-                        {
-                            ID = cloneImplant.TypeID,
-                            Name = cloneImplant.TypeName
-                        }).ToList();
+                var cloneImplants = serial.JumpCloneImplants.Where(x => x.JumpCloneID ==
+                    jumpClone.JumpCloneID).Select(cloneImplant => new SerializableNewImplant
+                    {
+                        ID = cloneImplant.TypeID,
+                        Name = cloneImplant.TypeName
+                    });
 
                 ImplantSet set = new ImplantSet(m_character, jumpClone.CloneName);
                 set.Import(cloneImplants);
